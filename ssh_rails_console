@@ -1,0 +1,22 @@
+#!/usr/bin/expect -f
+
+set environment [lindex $argv 0];
+set server ${environment}.xxx.com
+set prompt "~]\$"
+
+spawn ssh $server
+expect $prompt
+send  "cd /$environment/rails/current \r"
+send "export PATH=$RUBY_HOME/bin:/usr/local/bin:/opt/local/bin:/bin:/usr/bin\r"
+send "export LD_LIBRARY_PATH=$MYSQL_HOME/lib:\$LD_LIBRARY_PATH\r"
+send "export RAILS_ENV=production\r"
+send "export RUBY_HOME\r"
+send "export MYSQL_HOME\r"
+send "export RAILS_ROOT\r"
+send "export APP_NAME\r"
+send "export ENV_NAME\r"
+send "export NODE_HOME\r"
+
+send "bundle exec rails c\r"
+expect "irb(main):001:0>"
+interact

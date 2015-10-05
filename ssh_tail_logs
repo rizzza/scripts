@@ -1,0 +1,11 @@
+#!/usr/bin/expect -f
+
+set environment [lindex $argv 0];
+set server ${environment}-xxx.com
+set prompt "~]\$"
+
+spawn ssh $server
+expect $prompt
+send  "cd /$environment/rails/current\r"
+send "tail -f /$environment/rails/current/log/production.log\r"
+interact
