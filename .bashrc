@@ -1,46 +1,34 @@
-# Set the default editor to vim.
-export EDITOR=emacs
+. $HOME/.alias
+. $HOME/.sec
 
-# Avoid succesive duplicates in the bash command history.
-export HISTCONTROL=ignoredups
+export EDITOR=emacs
+export LDAP=msiwiec
+
+export STUIPATH=$HOME/github/sitetestui
+export GOSEGPATH=$HOME/github/go_segment
+
+# GitHub
+eval "$(hub alias -s)"
+
+# Avoid successive duplicates in the bash command history.
+export HISTTIMEFORMAT='%F-%T: '
+export HISTCONTROL=ignoreboth:erasedups:ignorespace
+# :ls:ls -latr:ls -ltr:git st:git br:git br-sort:git ls not working with space
+export HISTIGNORE=“?:??:history:top:htop:exit:clear:c:mount:umount:bg:fg:jobs:pwd:cd”
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+shopt -s histappend
+
+# cswank/ussh
+export USSH_USER=$LDAP
+export USSH_COLOR_1=blue
+export USSH_COLOR_2=red
+export USSH_COLOR_3=magenta
+
 
 #enable colors
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# setup git autocompletion
+# Git completion
 source ~/.git-completion.bash
-
-# setup exercism autocompletion
-if [ -f ~/.config/exercism/exercism_completion.bash ]; then
-    . ~/.config/exercism/exercism_completion.bash
-fi
-
-# Make some possibly destructive commands more interactive.
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-
-# Add some easy shortcuts for formatted directory listings and add a touch of color.
-alias ll='ls -lF'
-alias la='ls -alF'
-alias ls='ls -F'
-
-
-# Make grep more user friendly by highlighting matches
-# and exclude grepping through .svn folders.
-alias grep='grep --color=auto --exclude-dir=\.svn'
-
-
-# SVN helpers
-alias snv='svn'
-alias sr='svn revert'
-alias ss='svn status | more'
-alias si='svn info'
-alias sd='svn diff'
-alias sc='svn commit'
-alias sup='svn up'
-
-# Clear term
-alias c='clear'
-alias cls='clear'
