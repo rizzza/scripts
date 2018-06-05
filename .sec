@@ -1,2 +1,5 @@
-export GITHUB_KEY
-export TR_KEY
+export GITHUB_TOKEN
+export PAT_GH_TOKEN
+export LDAP
+export NPMFULL
+export BK_READ_TOKEN
