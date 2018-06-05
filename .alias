@@ -1,3 +1,14 @@
+# Google meetings
+alias e='emacs'
+
+alias mount='diskutil mount'
+alias umount='diskutil unmount'
+
+alias g="git"
+alias h="history"
+alias j="jobs"
+alias aj="autojump"
+
 # Make some possibly destructive commands more interactive.
 alias rm='rm -i'
 alias mv='mv -i'
@@ -27,9 +38,29 @@ alias sup='svn up'
 alias c='clear'
 alias cls='clear'
 
-# Docker
-alias stui_tron_dev='cd $HOME/github/tron_acceptance; ./bin/start -d && ./bin/wait_for_goseg'
-alias stui_bse_dev="cd $HOME/github/business_acceptance && ./bin/start -d"
-
+# docker
 alias vnc_chrome='open vnc://:secret@localhost:$(docker ps | grep chrome | grep -oE "0.0.0.0:\d+" | cut -d: -f2)'
 alias vnc_firefox='open vnc://:secret@localhost:$(docker ps | grep firefox | grep -oE "0.0.0.0:\d+" | cut -d: -f2)'
+
+# Get week number
+alias week='date +%V'
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# macOS has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume output volume 100'"
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
